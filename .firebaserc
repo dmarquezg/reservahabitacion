@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "reservahabitacion-473ca": {
+      "hosting": {
+        "reservahabitacion": [
+          "reservahabitacion-473ca"
+        ]
+      }
+    }
+  }
+}

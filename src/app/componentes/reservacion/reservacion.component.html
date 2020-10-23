@@ -1,0 +1,112 @@
+<div class="container">
+    <div class="row justify-content-center mt-5 pt-5 mb-5 pb-5">
+        <div class="col-md-7">
+            <h1 class="display-4">Reserva una habitación</h1>
+            <hr>
+            <p class="pb-0 mb-0">Te invitamos a realizar la reservación de una habitación</p>
+            <p class="text-danger small pt-0 mt-0">*Todos los campos son obligatorios</p>
+            <form [formGroup]="reservaForm" (ngSubmit)="onSaveForm()">
+                <div class="row form-group">
+                    <label for="nombre" class="col-form-label col-md-4">Nombre:</label>
+                    <div class="col-md-8">
+                        <input type="text" formControlName="name" class="form-control" placeholder="Ingrese su nombre" required>
+                        <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+                            <div class="container-error-message" *ngIf="name.errors.required">
+                                Nombre es un campo obligatorio
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label for="apellidos" class="col-form-label col-md-4">Apellidos:</label>
+                    <div class="col-md-8">
+                        <input type="text" formControlName="apellidos" class="form-control" placeholder="Ingrese su nombre" required>
+                        <div class="alert alert-danger" *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
+                            <div class="container-error-message" *ngIf="apellidos.errors.required">
+                                Apellidos es un campo obligatorio
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label for="telefono" class="col-form-label col-md-4">Teléfono:</label>
+                    <div class="col-md-8">
+                        <input type="number" formControlName="tel" class="form-control" placeholder="Ingrese su número de teléfono">
+                        <div class="alert alert-danger" *ngIf="tel.invalid && (tel.dirty || tel.touched)">
+                            <div class="container-error-message" *ngIf="tel.errors.required">
+                                Teléfono es obligatorio
+                            </div>
+                            <div class="container-error-message" *ngIf="tel.errors.minlength">
+                                El número de teléfono debe contener 10 caracteres</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label for="form_time" class="col-form-label col-md-4">Estancia desde:</label> 
+                    <div class="col-md-8">
+                        <input type="date" formControlName="estancia" class="form-control" placeholder="Ingresa la fecha">
+                        <div class="alert alert-danger" *ngIf="estancia.invalid && (estancia.dirty || estancia.touched)">
+                            <div class="container-error-message" *ngIf="estancia.errors.required">
+                                Fecha de estancia es un campo obligatorio.
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+
+                <div class="row form-group">
+                    <label for="duracion" class="col-form-label col-md-4">Duración</label>
+                    <div class="col-md-8">
+                    <select formControlName="duracion" class="form-control">
+                      <option>1 mes</option>
+                      <option>2 meses</option>
+                      <option>3 meses</option>
+                      <option>4 meses</option>
+                      <option>5 meses</option>
+                    </select>
+                    <div class="alert alert-danger" *ngIf="duracion.invalid && (duracion.dirty || duracion.touched)">
+                        <div class="container-error-message" *ngIf="duracion.errors.required">
+                            Duración de estancia es un campo obligatorio.
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label for="habitacion" class="col-form-label col-md-4">Tipo de habitación:</label>
+                    <div class="col-md-8">
+                    <select formControlName="tipohabitacion" class="form-control">
+                      <option>Habitación compartida</option>
+                      <option>Habitación individual</option>
+                    </select>
+                    <div class="alert alert-danger" *ngIf="tipohabitacion.invalid && (tipohabitacion.dirty || tipohabitacion.touched)">
+                        <div class="container-error-message" *ngIf="tipohabitacion.errors.required">
+                            Elija un tipo de habitación.
+                        </div>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label for="inquilino" class="col-form-label col-md-4">Tipo de inquilino:</label>
+                    <div class="col-md-8">
+                    <select formControlName="tipoinquilino" class="form-control">
+                      <option>Estudiante</option>
+                      <option>Profesor</option>
+                    </select>
+                    <div class="alert alert-danger" *ngIf="tipoinquilino.invalid && (tipoinquilino.dirty || tipoinquilino.touched)">
+                        <div class="container-error-message" *ngIf="tipoinquilino.errors.required">
+                            Este campo es obligatorio.
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-success" [disabled]="!reservaForm.valid">Enviar</button>
+                
+            </form>
+        </div>
+    </div>
+</div>
+
