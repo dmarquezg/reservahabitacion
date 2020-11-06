@@ -1,4 +1,5 @@
-export interface MessageI{
+export interface StudentI{
+    id: string,
     name: string,
     apellidos: string,
     tel: number,
