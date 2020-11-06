@@ -12,7 +12,7 @@
                         <input type="text" formControlName="name" class="form-control" placeholder="Ingrese su nombre" required>
                         <div class="alert alert-danger" *ngIf="name.invalid && (name.dirty || name.touched)">
                             <div class="container-error-message" *ngIf="name.errors.required">
-                                Nombre es un campo obligatorio
+                                Nombre es un campo obligatorio.
                             </div>
                         </div>
                     </div>
@@ -20,10 +20,10 @@
                 <div class="row form-group">
                     <label for="apellidos" class="col-form-label col-md-4">Apellidos:</label>
                     <div class="col-md-8">
-                        <input type="text" formControlName="apellidos" class="form-control" placeholder="Ingrese su nombre" required>
+                        <input type="text" formControlName="apellidos" class="form-control" placeholder="Ingrese sus apellidos" required>
                         <div class="alert alert-danger" *ngIf="apellidos.invalid && (apellidos.dirty || apellidos.touched)">
                             <div class="container-error-message" *ngIf="apellidos.errors.required">
-                                Apellidos es un campo obligatorio
+                                Apellidos es un campo obligatorio.
                             </div>
                         </div>
                     </div>
@@ -32,13 +32,13 @@
                 <div class="row form-group">
                     <label for="telefono" class="col-form-label col-md-4">Teléfono:</label>
                     <div class="col-md-8">
-                        <input type="number" formControlName="tel" class="form-control" placeholder="Ingrese su número de teléfono">
+                        <input type="number" formControlName="tel" class="form-control" placeholder="764-123-81-96">
                         <div class="alert alert-danger" *ngIf="tel.invalid && (tel.dirty || tel.touched)">
                             <div class="container-error-message" *ngIf="tel.errors.required">
-                                Teléfono es obligatorio
+                                Teléfono es obligatorio y debe contener 10 dígitos.
                             </div>
                             <div class="container-error-message" *ngIf="tel.errors.minlength">
-                                El número de teléfono debe contener 10 caracteres</div>
+                                El número de teléfono debe contener 10 dígitos.</div>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
                 </div> 
 
                 <div class="row form-group">
-                    <label for="duracion" class="col-form-label col-md-4">Duración</label>
+                    <label for="duracion" class="col-form-label col-md-4">Duración de estancia:</label>
                     <div class="col-md-8">
                     <select formControlName="duracion" class="form-control">
                       <option>1 mes</option>
@@ -97,7 +97,7 @@
                     </select>
                     <div class="alert alert-danger" *ngIf="tipoinquilino.invalid && (tipoinquilino.dirty || tipoinquilino.touched)">
                         <div class="container-error-message" *ngIf="tipoinquilino.errors.required">
-                            Este campo es obligatorio.
+                            El campo tipo de inquilino es obligatorio.
                         </div>
                     </div>
                     </div>
@@ -110,3 +110,4 @@
     </div>
 </div>
 
+<app-footer></app-footer>
