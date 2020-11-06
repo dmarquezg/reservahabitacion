@@ -46,7 +46,7 @@ export class ReservacionComponent implements OnInit {
     if(this.reservaForm.valid){
       this.dbData.saveMessage(this.reservaForm.value);
       this.onResetForm();
-      window.alert('Reservacion realizada con éxito');
+      window.alert('Reservacion realizada con éxito. Nos comunicaremos al contacto que proporcionó para confirmar su hospedaje.');
     } else {
       window.alert('Ocurrió un error. Intente de nuevo');
     }
