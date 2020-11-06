@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReservacionComponent } from './componentes/reservacion/reservacion.component';
@@ -15,6 +15,7 @@ import { GalleryComponent } from './componentes/gallery/gallery.component';
 import { AboutusComponent } from './componentes/aboutus/aboutus.component';
 import { ContactoComponent } from './componentes/contacto/contacto.component';
 import { FooterComponent } from './componentes/footer/footer.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -31,8 +32,10 @@ import { FooterComponent } from './componentes/footer/footer.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    NgbModule,
   ],
   providers: [DataDbService],
   bootstrap: [AppComponent]
