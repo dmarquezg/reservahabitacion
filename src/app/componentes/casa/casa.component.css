@@ -1,0 +1,35 @@
+.table {
+    text-align: center;
+}
+
+#btnupdate {
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+#btndelete {
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+#logo {
+    margin-bottom: -40px;
+}
+
+#titulo {
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+#update {
+    margin-top: 2%;
+}
+
+img{
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.container{
+    padding-bottom: 80px;
+}
