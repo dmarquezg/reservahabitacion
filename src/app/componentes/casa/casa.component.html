@@ -1,1 +1,160 @@
-<p>casa works!</p>
+<div class="container" *ngIf="reservas?.length > 0;else noReservas">
+    <div class="row mt-4 pt-4 mb-4 pb-4">
+        <div class="col-12">
+            <h1 class="display-4" id="titulo">Panel de Administración</h1>
+            <table class="table table-bordered table-responsive">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellidos</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Estancia desde (Fecha)</th>
+                    <th scope="col">Duración de estancia</th>
+                    <th scope="col">Habitación</th>
+                    <th scope="col">Inquilino</th>
+                    <th scope="col">Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let reserva of reservas">
+                    <td>{{ reserva.name }}</td>
+                    <td>{{ reserva.apellidos }}</td>
+                    <td>{{ reserva.tel }}</td>
+                    <td>{{ reserva.estancia }}</td>
+                    <td>{{ reserva.duracion }}</td>
+                    <td>{{ reserva.tipohabitacion }}</td>
+                    <td>{{ reserva.tipoinquilino }}</td>
+                    <td>
+                        <button type="button " class="btn btn-warning" id="btnupdate" data-toggle="modal" data-target="#update" (click)="editReserva($event, reserva)">Actualizar</button>
+                        <button class="btn btn-danger" type="button" id="btndelete" data-toggle="modal" data-target="#delete" (click)="editReserva($event, reserva)">Eliminar</button>
+                    </td>
+                    
+                    <!-- Modal Delete -->
+                    <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="delete" aria-hidden="true" *ngIf="editState && reservaToEdit.id == reserva.id">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="delete">
+                                        ¿Esta seguro de eliminar esta reservación?
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Si elimina esta reservación, no podrá recuperar la información de este inquilino.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button " class="btn btn-danger" data-dismiss="modal" (click)="eliminarReserva($event, reserva)">Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal Update -->
+                    <div class="modal fade" id="update" tabindex="-1" aria-labelledby="update" aria-hidden="false" *ngIf="editState && reservaToEdit.id == reserva.id"> 
+                        
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="update">
+                                  Modificar reservación
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <form (ngSubmit)="updateReserva(reserva)" #formNew="ngForm">
+                        
+                                <div class="row form-group">
+                                    <label for="nombre" class="col-form-label col-md-4">Nombre:</label>
+                                    <div class="col-md-8">
+                                    <input type="text" class="form-control" [(ngModel)]="reserva.name" name="name" required>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <label for="apellidos" class="col-form-label col-md-4">Apellidos:</label>
+                                    <div class="col-md-8">
+                                    <input type="text" class="form-control" [(ngModel)]="reserva.apellidos" name="apellidos" required>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <label for="telefono" class="col-form-label col-md-4">Teléfono:</label>
+                                    <div class="col-md-8">
+                                        <input type="number" class="form-control" [(ngModel)]="reserva.tel" name="tel" placeholder="764-123-81-96" required>
+                                    </div>
+                                </div>
+                                  
+                                <div class="row form-group">
+                                    <label for="form_time" class="col-form-label col-md-4">Estancia desde:</label> 
+                                    <div class="col-md-8">
+                                        <input type="date" class="form-control" [(ngModel)]="reserva.estancia" #estancia="ngModel" name="estancia" required>
+                                    </div>
+                                </div> 
+
+                                <div class="row form-group">
+                                    <label for="duracion" class="col-form-label col-md-4">Duración de estancia:</label>
+                                    <div class="col-md-8">
+                                    <select class="form-control" [(ngModel)]="reserva.duracion" #duracion="ngModel" name="duracion">
+                                      <option>1 mes</option>
+                                      <option>2 meses</option>
+                                      <option>3 meses</option>
+                                      <option>4 meses</option>
+                                      <option>5 meses</option>
+                                    </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <label for="habitacion" class="col-form-label col-md-4">Tipo de habitación:</label>
+                                    <div class="col-md-8">
+                                    <select class="form-control" [(ngModel)]="reserva.tipohabitacion" #tipohabitacion="ngModel" name="tipohabitacion">
+                                      <option>Habitación compartida</option>
+                                      <option>Habitación individual</option>
+                                    </select>
+                                    </div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <label for="inquilino" class="col-form-label col-md-4">Tipo de inquilino:</label>
+                                    <div class="col-md-8">
+                                    <select class="form-control" [(ngModel)]="reserva.tipoinquilino" #tipoinqulino="ngModel" name="tipoinquilino">
+                                      <option>Estudiante</option>
+                                      <option>Profesor</option>
+                                    </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" *ngIf="editState && reservaToEdit.id == reserva.id" (click)="clearState()">Cerrar</button>
+                                    <button type="submit" class="btn btn-warning" (click)="editReserva($event, reserva)" (click)="closemodalSave()">Modificar</button>
+                                </div>
+
+                                </form>
+                              </div>
+                        
+                            </div>
+                          </div>
+                    </div>
+
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #noReservas>
+    <hr>
+    <div class="display-4" id="titulo">Aún no hay reservas que mostrar</div>
+    <img src="assets/img/lupa.jpg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
+    <hr>
+</ng-template>
+
+<app-footer></app-footer>
