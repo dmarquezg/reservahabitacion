@@ -1,6 +1,13 @@
-section {
+@import url('https://fonts.googleapis.com/css2?family=Montserrat|Montserrat:italic:wght@700&display=swap');
+
+h2{
+	font-family: 'Montserrat', cursive;
+}
+
+.page-section {
     padding-top: 50px;
-    padding-bottom: 60px;
+	padding-bottom: 60px;
+	background-color: #EB5E28;
 }
 
 .divider{
